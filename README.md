@@ -1,5 +1,3 @@
-# self-pruning-neural-network
-
 # Self-Pruning Neural Network (Tredence Case Study)
 
 ## 📌 Problem
@@ -27,16 +25,16 @@ This project builds a model that **learns to prune its own weights during traini
   Total Loss = CrossEntropy + λ × SparsityLoss
   ```
 
-* Sparsity loss = **L1 penalty on gate values**, which pushes unnecessary weights toward zero
+* Sparsity loss = **L1 penalty on gate values**, encouraging pruning
 
 ---
 
 ## 🧠 Key Idea
 
-Instead of manually pruning, the model **automatically learns which connections are important**.
+The model **automatically identifies and removes less important connections** during training.
 
-Higher λ → more pruning
-Lower λ → better accuracy
+* Low λ → less pruning, higher accuracy
+* High λ → more pruning, lower accuracy
 
 ---
 
@@ -44,17 +42,17 @@ Lower λ → better accuracy
 
 | Lambda | Accuracy | Sparsity |
 | ------ | -------- | -------- |
-| 1e-3   | 0.31     | 9%       |
-| 3e-3   | 0.33     | 9%       |
-| 5e-3   | 0.33     | 10%      |
+| 1e-3   | 0.30     | 9%       |
+| 3e-3   | 0.34     | 10%      |
+| 5e-3   | 0.32     | 10%      |
 
 ---
 
 ## 📈 Observations
 
-* Increasing λ increases sparsity (pruning effect)
-* Accuracy remains stable for moderate λ values
-* Model successfully removes less important weights during training
+* Increasing λ slightly increases sparsity
+* Accuracy remains stable across λ values
+* Model successfully prunes a portion of weights during training
 
 ---
 
@@ -78,16 +76,15 @@ README.md                 # explanation
 
 ## 🎯 Conclusion
 
-This project demonstrates that **neural networks can adapt their structure dynamically** using learnable gates and L1 regularization.
+This project demonstrates that **neural networks can dynamically adapt their structure** using learnable gates and L1 regularization.
 
-This approach helps reduce model size and is useful for **resource-constrained environments**.
+It shows how pruning can be integrated directly into training, making models more efficient for real-world deployment.
 
 ---
 
 ## 📎 Reference
 
-Case study based on Tredence AI Engineering Internship task 
+Based on Tredence AI Engineering Internship case study.
 
 
-
-<img width="308" height="65" alt="image" src="https://github.com/user-attachments/assets/f1b47110-860e-4a2c-9b31-9e6916def263" />
+<img width="465" height="92" alt="image" src="https://github.com/user-attachments/assets/5a5d76af-086f-4bd5-acc8-743e7434c601" />
