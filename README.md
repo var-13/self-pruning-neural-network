@@ -3,15 +3,15 @@
 ## 📌 Problem
 
 Deploying large neural networks is limited by memory and computation.
-This project builds a model that **learns to prune its own weights during training** instead of pruning after training.
+This project builds a model that **learns to prune its own weights during training**, instead of applying pruning after training.
 
 ---
 
 ## ⚙️ Approach
 
-* Built a custom `PrunableLinear` layer
+* Implemented a custom `PrunableLinear` layer
 
-* Each weight has a **learnable gate (sigmoid-based)**
+* Each weight is controlled by a **learnable gate (sigmoid function)**
 
 * Effective weight:
 
@@ -25,7 +25,7 @@ This project builds a model that **learns to prune its own weights during traini
   Total Loss = CrossEntropy + λ × SparsityLoss
   ```
 
-* Sparsity loss = **L1 penalty on gate values**, encouraging pruning
+* Sparsity loss = **L1 penalty on gate values**, which encourages unnecessary weights to move toward zero
 
 ---
 
@@ -33,8 +33,8 @@ This project builds a model that **learns to prune its own weights during traini
 
 The model **automatically identifies and removes less important connections** during training.
 
-* Low λ → less pruning, higher accuracy
-* High λ → more pruning, lower accuracy
+* Low λ → less pruning, better accuracy
+* High λ → more pruning, potential accuracy drop
 
 ---
 
@@ -50,9 +50,10 @@ The model **automatically identifies and removes less important connections** du
 
 ## 📈 Observations
 
-* Increasing λ slightly increases sparsity
-* Accuracy remains stable across λ values
-* Model successfully prunes a portion of weights during training
+* Increasing λ increases sparsity, showing a trade-off with accuracy
+* Accuracy remains relatively stable for moderate λ values
+* The model successfully prunes a portion of weights during training
+* **λ = 3e-3 provides the best balance between accuracy and sparsity**
 
 ---
 
@@ -76,9 +77,9 @@ README.md                 # explanation
 
 ## 🎯 Conclusion
 
-This project demonstrates that **neural networks can dynamically adapt their structure** using learnable gates and L1 regularization.
+This project demonstrates that neural networks can **adapt their structure dynamically** using learnable gates and L1 regularization.
 
-It shows how pruning can be integrated directly into training, making models more efficient for real-world deployment.
+It shows how pruning can be integrated directly into the training process, making models more efficient for **resource-constrained environments**.
 
 ---
 
@@ -86,5 +87,4 @@ It shows how pruning can be integrated directly into training, making models mor
 
 Based on Tredence AI Engineering Internship case study.
 
-
-<img width="465" height="92" alt="image" src="https://github.com/user-attachments/assets/5a5d76af-086f-4bd5-acc8-743e7434c601" />
+<img width="266" height="52" alt="image" src="https://github.com/user-attachments/assets/13f4da26-f396-47f1-8fa5-fcdcbaf520dc" />
